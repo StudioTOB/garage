@@ -1,0 +1,450 @@
+
+    <style>
+  
+
+
+
+.spinner {
+  padding-top:20px;
+}
+.timer{
+  font-size:36px;
+  font-weight: bold;
+}
+
+
+.kenteken {
+      border: 0;
+    color: #111111;
+    font-size: 40px;
+    margin: 0;
+    padding: 0 0 0 52px;
+    background-image: url(https://www.allsecur.nl/autoverzekeringen/39.1.0/docroot/home-alternative/images/sprite-all.png);
+    background-position: 0px -566px;
+    width: 329px;
+    height: 69px;
+    line-height: 69px;
+}
+.progress { 
+  height: 0.2em;
+  overflow: hidden;
+
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+
+    border-right-color: #CCC!important;
+  border-bottom-color: #CCC!important;
+  border-left-color: #CCC!important;
+  line-height: 1.5em; 
+}
+
+.progress-bar { 
+  transition: width 2s ease-in-out; 
+}
+
+  </style>
+
+  <style>
+.tc-chart-js-legend {
+  list-style-type: none;
+  padding-left: 0px;
+  padding-bottom:80px;
+
+}
+.tc-chart-js-legend ul {
+
+  
+}
+.tc-chart-js-legend li {
+  display: block;
+  float: left;
+  clear:both;
+  padding:10px;
+}
+.tc-chart-js-legend li span {
+  width:25px;
+  height:25px;
+  display:inline-block;
+  float:left;
+  margin-right:10px;
+}
+.chart{
+  width:99%;
+  height:80%;
+}
+.rcorners2 {
+    border-radius: 12px;
+    border: 1px solid #8AC007;
+
+    margin-top: 3px;
+    overflow: auto;
+    padding-bottom:20px;
+    box-shadow: 2px 2px 2px #888;
+}
+.fadeit {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    opacity: 1;
+}
+.fadeit.ng-enter,
+.fadeit.ng-leave {
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.fadeit.ng-enter {
+    opacity: 0;
+}
+.fadeit.ng-enter-active {
+    opacity: 1;
+}
+.fadeit.ng-leave {
+    opacity: 1;
+}
+.fadeit.ng-leave-active {
+    opacity: 0;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #8AC007; /* old IE */
+    background-color: #8AC007; /* Modern Browsers */
+
+}
+
+
+</style>
+  <!-- Select2 theme -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+
+  <!--
+    Selectize theme
+    Less versions are available at https://github.com/brianreavis/selectize.js/tree/master/dist/less
+  -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+  <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.bootstrap2.css"> -->
+  <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.bootstrap3.css"> -->
+
+
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+  
+  <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'/>
+<div class="row" >
+  <div class="col-md-12">
+<div class="col-md-5 rcorners2 fadeit" style="margin-left:0px;height:100%; background-color: white;" ng-if="dataloaded">
+   <div class="row" style="background-color:#8AC007;height:19px;"></div>
+
+
+      <div class="form-group" style="margin-left: 10%; padding-top:10px;" ng-if="dataloaded">
+            
+            <div class="kenteken"><kenteken klantid="{{opdracht.klant}}" kentekenid="{{opdracht.kenteken}}"></kenteken></div>
+      </div>
+      <div class="form-group" style="margin-left: 10%; padding-top:10px;" ng-if="dataloaded">
+            
+           <h3><b>{{voertuigInfo.Merk}} {{voertuigInfo.Handelsbenaming}}</b></h3>
+           
+              
+            <i ng-if="info" class="fa fa-info-circle" style="font-size:36px;color:blue;" ng-click="infoToggle();"></i>
+            <i ng-if="!info"class="fa fa-info-circle" style="font-size:36px;color:rgb(255,64,129);" ng-click="infoToggle();"></i>
+            <md-tooltip>Klik voor meer info over deze auto. Klik nogmaals om dit te verbergen</md-tooltip>
+           
+            
+      </div>
+
+
+      <hr style="margin-left:-15px;width:107.5%;">
+
+      <div class="form-group" ng-if="dataloaded">
+          <label for="groupStatus">Opdrachtnummer: </label>
+      	{{opdracht.nummer}}
+      </div>
+      <div class="form-group" ng-if="dataloaded">
+          <label for="groupStatus">Opdracht Datum: </label>
+        	{{opdracht.datum | date}}
+      </div>
+      <div class="form-group" ng-if="dataloaded">
+          <label for="groupStatus">Klantnaam: </label>
+          {{getklant.voornaam}} {{getklant.achternaam}}
+              
+      </div>
+      <spinner></spinner>
+      <div class="form-group" ng-if="dataloaded">
+            <label for="groupStatus">Totale Tijd: </label> 
+            <span ng-if="opdracht.totaaluren">{{opdracht.totaaluren | time:'ss'}}</span>
+      </div>
+      <div class="form-group" ng-if="dataloaded">
+            <label for="groupStatus">Totaal Bedrag: </label> 
+            {{opdracht.totaalbedrag |currency}} 
+      </div>
+      <div class="form-group" ng-if="dataloaded">
+            <label for="groupStatus">Status: </label> 
+            <div style="width:60%;margin-left:60px;margin-top:-38px;"><opdracht-voortgang opdrachtnummer="{{opdracht.nummer}}"></opdracht-voortgang></div>
+      </div>
+      
+      
+ 
+ 
+
+</div>
+
+  <div class="col-md-6 rcorners2 fadeit" style="margin-left:80px; background-color: white;" ng-if="info">
+      <div class="row" style="background-color:#8AC007;">
+        <div class="col-md-1 col-md-offset-10" ng-click="infoToggle();" style="right:10px;cursor: pointer; cursor: hand;"><i class="fa fa-times" style="font-size:16px;color:#fff"></i> <span style="font-size:12px;color:#fff">Sluiten</span></div>
+      </div>
+    <div class="col-md-12">
+
+    <!-- Voertuig Info -->
+    <div style="color:#FF5722;margin-top:10px;"><h3>Voertuig info: <kenteken klantid="{{opdracht.klant}}" kentekenid="{{opdracht.kenteken}}"></kenteken></h3></div>
+    <hr style="margin-left:-35px;width:114.2%;">
+     <h3><b>{{voertuigInfo.Merk}} {{voertuigInfo.Handelsbenaming}}</b></h3>
+           
+              <b>Bouwjaar:</b> {{voertuigInfo.Datumeerstetoelating | date:"y"}}<br>
+              <b>Datumeerstetoelating:</b> {{voertuigInfo.Datumeerstetoelating | date}}<br>
+              <b>Aantalzitplaatsen:</b> {{voertuigInfo.Aantalzitplaatsen}}<br>
+              <b>BPM:</b>  {{voertuigInfo.BPM | currency:"€ "}}<br>
+              <hr style="margin-left:-35px;width:114.2%;">
+              <b>Brandstofverbruikbuitenweg:</b>  {{voertuigInfo.Brandstofverbruikbuitenweg}}<br>
+              <b>Brandstofverbruikgecombineerd:</b>  {{voertuigInfo.Brandstofverbruikgecombineerd}}<br>
+              <b>Brandstofverbruikstad:</b>  {{voertuigInfo.Brandstofverbruikstad}}<br>
+              <b>CO2uitstootgecombineerd:</b>  {{voertuigInfo.CO2uitstootgecombineerd}}<br>
+              <hr style="margin-left:-35px;width:114.2%;">
+              <b>Catalogusprijs:</b>  {{voertuigInfo.Catalogusprijs | currency:"€ "}}<br>
+              <b>Cilinderinhoud:</b>  {{voertuigInfo.Cilinderinhoud}}<br>
+              <hr style="margin-left:-35px;width:114.2%;">
+              <b>Datumaanvangtenaamstelling:</b>  {{voertuigInfo.Datumaanvangtenaamstelling | date}}<br>
+              <b>DatumeersteafgifteNederland:</b>  {{voertuigInfo.DatumeersteafgifteNederland | date}}<br>
+              <b>Datumeerstetoelating:</b>  {{voertuigInfo.Datumeerstetoelating | date}}<br>
+              <hr style="margin-left:-35px;width:114.2%;">
+              <b>Eerstekleur:</b> {{voertuigInfo.Eerstekleur}}<br>
+              <b>G3installatie:</b>  {{voertuigInfo.G3installatie}}<br>
+              <b>Hoofdbrandstof:</b>  {{voertuigInfo.Hoofdbrandstof}}<br>
+              <b>Inrichting:</b>  {{voertuigInfo.Inrichting}}<br>
+              <hr style="margin-left:-35px;width:114.2%;">
+              <b>Massaleegvoertuig:</b>  {{voertuigInfo.Massaleegvoertuig}} Kg<br>
+              <b>Massarijklaar:</b>  {{voertuigInfo.Massarijklaar}} Kg<br>
+              <b>Maximumtetrekkenmassageremd:</b>  {{voertuigInfo.Maximumtetrekkenmassageremd}}<br>
+              <b>Maximumtetrekkenmassaongeremd:</b>  {{voertuigInfo.Maximumtetrekkenmassaongeremd}}<br>
+              <hr style="margin-left:-35px;width:114.2%;">
+              <b>Milieuclassificatie:</b>  {{voertuigInfo.Milieuclassificatie}}<br>
+              <b>Nevenbrandstof:</b>  {{voertuigInfo.Nevenbrandstof}}<br>
+              <b>Retrofitroetfilter:</b>  {{voertuigInfo.Retrofitroetfilter}}<br>
+              <b>Toegestanemaximummassavoertuig:</b>  {{voertuigInfo.Toegestanemaximummassavoertuig}}<br>
+              <hr style="margin-left:-35px;width:114.2%;">
+              <b>Tweedekleur:</b>  {{voertuigInfo.Tweedekleur}}<br>
+              <b>Vermogen:</b>  {{voertuigInfo.Vermogen}}<br>
+              <b>VervaldatumAPK:</b>  {{voertuigInfo.VervaldatumAPK | date}}<br>
+              <b>Voertuigsoort:</b>  {{voertuigInfo.Voertuigsoort}}<br>
+              <hr style="margin-left:-35px;width:114.2%;">
+              <b>WAMverzekerdgeregistreerd:</b>  {{voertuigInfo.WAMverzekerdgeregistreerd}}<br>
+              <b>Wachtopkeuren:</b>  {{voertuigInfo.Wachtopkeuren}}<br>
+              <b>Zuinigheidslabel:</b>  {{voertuigInfo.Zuinigheidslabel}}<br>
+
+                   
+
+
+
+</div>
+</div>
+
+
+  <div class="col-md-12 rcorners2 fadeit" style="{{chartStyle}}" ng-if="chartSelectie">
+
+
+    
+              <div class="row" style="background-color:#8AC007;">
+                <div class="col-md-2 col-md-offset-11" ng-click="chartToggle();" style="right:10px;cursor: pointer; cursor: hand;"><i class="fa fa-times" style="font-size:16px;color:#fff"></i> <span style="font-size:12px;color:#fff">Sluiten</span>
+                </div>
+              </div>
+        <div class="col-md-12">
+              <!-- Chart -->
+              <div style="color:#FF5722;margin-top:10px;"><h3>Statistische info: {{selectedNaam}}</h3></div>
+              <hr style="margin-left:-35px;width:114.2%;">
+              
+              <canvas style="margin-left:-20px;" tc-chartjs-line chart-options="options" chart-data="data" auto-legend></canvas>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="col-md-3 col-md-offset-3">
+                  <h3>Gemiddelde Scores Monteurs:</h3>
+                  </div>
+                  <div class="col-md-3 col-md-offset-10" style="color:#B6B6B6;cursor: pointer;" ng-init="toggle=true">
+                    <div ng-show="toggle"><span  ng-click="toggle=false">Score Verbergen</span></div>
+
+                    <div ng-show="!toggle"><div ng-click="toggle=true">Score Tonen</div></div>
+                  
+                  </div>
+                </div>
+              </div>
+              
+              <hr style="margin-left:-35px;width:114.2%;">
+              <div ng-if="toggle" class="fadeit">
+              <div class="col-md-8 col-md-offset-2" style="color:#FF5722;" ng-repeat-start="monteur in score | orderBy:'tijd'" ng-if="$first">
+              <h4>{{monteur.monteur}} is de snelste monteur met een tijd van: 
+              {{monteur.tijd | time}}</h4>
+              </div>
+              <div ng-repeat-end ng-if="!$first">
+                <!-- leeg laten ivm ng-repeat-start -->
+              </div>
+              <div class="col-md-6 col-md-offset-3">
+              <div class="row">
+                  <div  ng-repeat-start="monteur in score | orderBy:'tijd'" ng-if="$first">
+                    <div class="col-lg-6"><span style="color:green;"><b>1e {{monteur.monteur}}</b></span></div> 
+                    <div class="col-lg-6"><span style="color:green;"><b>{{monteur.tijd | time}}</b></span></div>
+                    <hr style="background-color:#fff; margin-left:10px;width:80%;border-style:dashed">
+                  </div>
+             
+                  <div ng-repeat-end ng-if="!$first">
+                    <div class="col-lg-6">{{$index + 1}}e {{monteur.monteur}}</div> 
+                    <div class="col-lg-6">{{monteur.tijd | time}}</div> 
+                    <hr style="background-color:#fff; margin-left:10px;width:80%;border-style:dashed">
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="col-lg-12" style="height:20px;"></div> 
+
+<div class="col-lg-12 rcorners2" style="padding-top:10px; background-color: white;" ng-if="dataloaded">
+<div class="row" style="margin-top:-10px;background-color:#8AC007;height:19px;"></div>
+<div class="row" style="padding-top:10px;">
+
+    <div class="form-group col-lg-6">
+   
+        
+    
+
+  <ui-select ng-if="dataloaded" ng-model="model.onderdeel" theme="selectize"  style="max-width: 500px;">
+    <ui-select-match placeholder="Kies een onderdeel om toe te voegen...">{{$select.selected.naam}}</ui-select-match>
+    <!-- NOTE: propsFilter is a custom filter defined in demo.js -->
+    <ui-select-choices repeat="onderdeel in onderdelen | propsFilter: {naam: $select.search, leverancier: $select.search}">
+      <div class="titel" ng-bind-html="onderdeel.naam | highlight: $select.search"></div>
+      <small>
+        prijs: {{onderdeel.prijs | currency:"€"}}<br>
+        leverancier: <span ng-bind-html="''+onderdeel.leverancier | highlight: $select.search"></span>
+      </small>
+    </ui-select-choices>
+  </ui-select>
+
+   
+</div> 
+
+
+    <div class="col-lg-6">
+    
+    <button class="btn btn-primary btn-line" ng-click="bewaar_opdrachtItem(onderdelen)"><i class="fa fa-plus"></i> Onderdeel Toevoegen</button>
+    </div>
+</div>  
+
+<hr style="margin-left:-15px;width:103%;">
+ 
+     
+     
+ <div class="col-md-10" style="margin-left:-20px; background-color: white;" >   
+    
+
+<table class="table table-responsive table-striped " st-table="orderOnderdelenCollection" st-safe-src="orderOnderdelen">
+      
+    <thead>
+      
+      <tr>
+
+          <th colspan="2">
+              <input st-search="naam" placeholder="Zoek op Onderdeel" class="input-sm form-control" type="search"/>
+          </th>
+          <th colspan="2">
+              <input st-search="leverancier" placeholder="Zoek op leverancier" class="input-sm form-control" type="search"/>
+          </th>
+          <th colspan="2">
+              <input st-search placeholder="Algemeen zoeken" class="input-sm form-control" type="search"/>
+          </th>
+          <th colspan="4">
+            <select ng-model="itemsPerPage" ng-change="changed()" class="input-sm" placeholder="Aantal Per Pagina">
+              <option style="display:none" value="">Aantal Onderdelen Per Pagina</option>
+              <option value="5" >5</option>
+              <option value="10">10</option>
+              <option value="50">50</option>
+            </select>
+          </th>
+      </tr>
+      <th></th>
+      <th st-sort="naam">Onderdeel</th>
+      <th st-sort="prijs">Prijs/Leverancier</th>
+      
+      <th st-sort="uitgevoerd_door">Uitgevoerd door</th>
+      <th st-sort="startedAt">Gestart op</th>
+      
+      <th st-sort="tijdverstreken">Verlopen Tijd</th>
+
+    </thead>
+      
+        <tbody>
+            <tr ng-if="!orderOnderdeel.gereed" ng-repeat="(id, orderOnderdeel) in orderOnderdelenCollection" ng-click="selectedOnderdeel(orderOnderdeel.onderdeelId)" style="cursor: pointer;" scrollup>
+                
+                
+                <td ng-if="!orderOnderdeel.loopt && !orderOnderdeel.gereed"><i class="fa fa-wrench" style="color:#FF5722; font-size:24px;"></i></td>
+                <td ng-if="orderOnderdeel.loopt"><i class="fa fa-cog fa-spin" style="color:#FF5722; font-size:24px;"></i></td>
+
+                <td>{{orderOnderdeel.naam}}</td>
+                <td>{{orderOnderdeel.prijs | currency:"€ "}}<br>{{orderOnderdeel.leverancier}}</td>
+                
+                <td>{{orderOnderdeel.uitgevoerd_door}}</td>
+                <td ng-if="orderOnderdeel.startedAt != null">{{orderOnderdeel.startedAt|date}} om {{orderOnderdeel.startedAt|date:'HH:mm:ss'}}</td>
+                <td ng-if="orderOnderdeel.startedAt == null"> - </td>
+                
+                
+                
+                <td ng-if="orderOnderdeel.tijdverstreken != null">{{orderOnderdeel.tijdverstreken| time:'ss'}}</td>
+                <td ng-if="orderOnderdeel.tijdverstreken == null"> - </td>
+
+
+                
+                <td><a class="btn btn-primary btn-xs btn-line" href="#onderdeelbewerken/{{orderOnderdeel.onderdeelId}}">Bewerken</a></td>
+                <td><button class="btn btn-danger btn-xs btn-line" ng-click="orderOnderdelen.$remove(orderOnderdeel)">Verwijderen</button></td>
+                
+
+            </tr>
+
+            <tr ng-if="orderOnderdeel.gereed" ng-repeat="(id, orderOnderdeel) in orderOnderdelenCollection" ng-click="selectedOnderdeel(orderOnderdeel.onderdeelId)" style="cursor: pointer;" scrollup>
+                
+                <td><i class="fa fa-check" style="color:green; font-size:24px;"></i></td>
+                <td>{{orderOnderdeel.naam}}</td>
+                <td>{{orderOnderdeel.prijs | currency:"€ "}}<br>{{orderOnderdeel.leverancier}}</td>
+                
+                <td>{{orderOnderdeel.uitgevoerd_door}}</td>
+                <td ng-if="orderOnderdeel.startedAt != null">{{orderOnderdeel.startedAt|date}} om {{orderOnderdeel.startedAt|date:'HH:mm:ss'}}</td>
+                <td ng-if="orderOnderdeel.startedAt == null"> - </td>
+                
+                
+                
+                <td ng-if="orderOnderdeel.tijdverstreken != null">{{orderOnderdeel.tijdverstreken| time:'ss'}}</td>
+                <td ng-if="orderOnderdeel.tijdverstreken == null"> - </td>
+
+
+              
+                <td><a class="btn btn-primary btn-xs btn-line" href="#onderdeelbewerken/{{orderOnderdeel.onderdeelId}}">Bewerken</a></td>
+                <td><button class="btn btn-danger btn-xs btn-line" ng-click="orderOnderdelen.$remove(orderOnderdeel)">Verwijderen</button></td>
+                
+
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="10" class="text-center">
+                        <div st-pagination="" st-items-by-page="itemsByPage" ></div>
+                </td>
+            </tr>
+        </tfoot>
+</table>
+    
+    </div>
+
+  </div>
+</div>
+<spinner></spinner> 
+</div>

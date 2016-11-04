@@ -1,0 +1,27 @@
+<style>.tc-chart-js-legend {
+  list-style-type: none;
+  padding-left: 0px;
+  padding-bottom:80px;
+
+}
+.tc-chart-js-legend ul {
+
+  
+}
+.tc-chart-js-legend li {
+  display: block;
+  float: left;
+  clear:both;
+  padding:10px;
+}
+.tc-chart-js-legend li span {
+  width:25px;
+  height:25px;
+  display:inline-block;
+  float:left;
+  margin-right:10px;
+}
+.chart{
+	width:99%;
+	height:80%;
+}</style> <div ng-repeat-start="monteur in score | orderBy:'tijd'" ng-if="$first"> <h4>{{monteur.monteur}} is de snelste monteur met een tijd van: {{monteur.tijd | time}}</h4> </div> <div ng-repeat-end ng-if="!$first"> <!-- leeg laten ivm ng-repeat-start --> </div>  <div class="chart" style="padding:10px"> <div class="row"> <div class="col-lg-8"> <select class="form-control" ng-model="kieschart" ng-change="updategekozenchart()" name="kieschart" placeholder="Kies Grafiek"> <option style="display:none" value="">Selecteer een Grafiek <option value="bar">Bar <option value="line">Line </select> <div ng-if="gekozen == 'bar'"> <canvas tc-chartjs-bar chart-options="options" chart-data="data" auto-legend></canvas> </div> <div ng-if="gekozen === 'line'"> <canvas tc-chartjs-line chart-options="options" chart-data="data" auto-legend></canvas> </div> </div> </div> <div class="row"> <div ng-repeat-start="monteur in score | orderBy:'tijd'" ng-if="$first"> <div class="col-lg-6"><span style="color:green"><b>1e {{monteur.monteur}}</b></span></div> <div class="col-lg-6"><span style="color:green"><b>{{monteur.tijd | time}}</b></span></div> </div> <div ng-repeat-end ng-if="!$first"> <div class="col-lg-6">{{$index + 1}}e {{monteur.monteur}}</div> <div class="col-lg-6">{{monteur.tijd | time}}</div> </div> </div> </div> 

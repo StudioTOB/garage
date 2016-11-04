@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <title>Login Page</title> <meta name="msapplication-TileColor" content="#5bc0de"> <meta name="msapplication-TileImage" content="assets/img/metis-tile.png"> <!-- Font Awesome --> <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css"> <!-- Metis core stylesheet --> <link rel="stylesheet" href="assets/css/main.min.css"> <link rel="stylesheet" href="assets/lib/animate.css/animate.min.css"> <style>input.ng-invalid {
+  border: 1px solid red;
+}
+input.ng-valid {
+  border: 1px solid green;
+}</style>  <body class="login"> <div class="form-signin col-md-6 col-md-offset-3"> <div class="text-center"> <img src="assets/img/logo.png" alt="Metis Logo"> </div> <hr> <div class="tab-content"> <div id="login" class="tab-pane active"> <form name="userForm" novalidate> <p class="text-muted text-center"> Enter your username and password </p> <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }"> <input type="email" name="email" placeholder="Username" ng-model="user.email" class="form-control top" required ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }"> <div ng-show="userForm.$submitted || userForm.email.$touched"> <span ng-show="userForm.email.$error.required">Tell us your email.</span> <span ng-show="userForm.email.$error.email">This is not a valid email.</span> </div> </div> <input type="password" placeholder="Password" ng-model="user.password" class="form-control bottom" required> <div class="checkbox"> <label> <input type="checkbox">Remember Me </label> </div> <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="inloggen()">Inloggen</button> </form> </div> <div id="forgot" class="tab-pane"> <form action="index.html"> <p class="text-muted text-center">Enter your valid e-mail</p> <input type="email" placeholder="mail@domain.com" class="form-control"> <br> <button class="btn btn-lg btn-danger btn-block" type="submit">Recover Password</button> </form> </div> <div id="signup" class="tab-pane"> <form> <input type="text" placeholder="username" class="form-control top"> <input type="email" placeholder="mail@domain.com" class="form-control middle"> <input type="password" placeholder="password" class="form-control middle"> <input type="password" placeholder="re-password" class="form-control bottom"> <button class="btn btn-lg btn-success btn-block" type="submit">Register</button> </form> </div> </div> <hr> <div class="text-center"> <ul class="list-inline"> <li> <a class="text-muted" href="#login" data-toggle="tab">Login</a> </li> <li> <a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a> </li> <li> <a class="text-muted" href="#signup" data-toggle="tab">Signup</a> </li> </ul> </div> </div> <script src="assets/lib/jquery/jquery.min.js"></script> <script type="text/javascript">(function($) {
+        $(document).ready(function() {
+          $('.list-inline li > a').click(function() {
+            var activeForm = $(this).attr('href') + ' > form';
+            //console.log(activeForm);
+            $(activeForm).addClass('animated fadeIn');
+            //set timer to 1 seconds, after that, unload the animate animation
+            setTimeout(function() {
+              $(activeForm).removeClass('animated fadeIn');
+            }, 1000);
+          });
+        });
+      })(jQuery);</script> <div style="height:50px"></div> 

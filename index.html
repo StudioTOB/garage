@@ -1,0 +1,213 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="UTF-8">
+    <title>Blank Page</title>
+
+    <!--IE Compatibility modes-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Mobile first-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- build:css(.) styles/vendor.css -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Metis core stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.min.css">
+
+    <!-- metisMenu stylesheet -->
+    <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.min.css">
+
+
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+
+    <link rel="stylesheet" href="assets/css/style-switcher.css">
+ 
+  <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-select/dist/select.css
+">
+    
+<link rel="stylesheet" href="bower_components/ng-responsive-calendar/dist/css/calendar.min.css"/>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!--[if lt IE 9]>
+      <script src="assets/lib/html5shiv/html5shiv.js"></script>
+        <script src="assets/lib/respond/respond.min.js"></script>
+        <![endif]-->
+
+    <!--For Development Only. Not required -->
+    <script>
+      less = {
+        env: "development",
+        relativeUrls: false,
+        rootpath: "../assets/"
+      };
+    </script>
+ 
+    <link rel="stylesheet/less" type="text/css" href="assets/css/less/theme.less">
+    <script src="assets/lib/less/less-1.7.5.min.js"></script>
+
+    <!--Modernizr 2.8.2-->
+    <script src="assets/lib/modernizr/modernizr.min.js"></script>
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+    <link rel='stylesheet' href='bower_components/textAngular/src/textAngular.css'>
+    <!-- Metis core stylesheet -->
+    <link rel="stylesheet" href="styles/main.css">
+
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+<!-- endbuild -->
+   
+  </head>
+  <body ng-app="admingarageApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="bg-dark dk" id="wrap">
+    
+        <site-header ng-controller="HeaderCtrl" ></site-header>
+   
+
+    
+    <div id="content">
+        <div class="outer">
+          <div class="slide-pop inner bg-light lter" ng-view="" >
+            
+          </div><!-- /.inner -->
+        </div><!-- /.outer -->
+      </div><!-- /#content -->
+ 
+    </div>
+
+        
+
+
+ <site-footer ng-controller="FooterCtrl"></site-footer>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+    
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/rangy/rangy-core.js"></script>
+    <script src="bower_components/rangy/rangy-classapplier.js"></script>
+    <script src="bower_components/rangy/rangy-highlighter.js"></script>
+    <script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="bower_components/rangy/rangy-serializer.js"></script>
+    <script src="bower_components/rangy/rangy-textrange.js"></script>
+    <script src="bower_components/textAngular/src/textAngular.js"></script>
+    <script src="bower_components/textAngular/src/textAngular-sanitize.js"></script>
+    <script src="bower_components/textAngular/src/textAngularSetup.js"></script>
+    <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/tc-angular-chartjs/dist/tc-angular-chartjs.min.js"></script>
+    <script src="bower_components/angular-ui-utils/modules/utils.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/ngDraggable/ngDraggable.js"></script>
+    <!-- endbower -->
+    
+
+   <script src="bower_components/ng-responsive-calendar/dist/js/calendar-tpls.min.js"></script>
+     
+  
+    
+
+    <!-- endbuild -->
+    
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+
+
+
+        <script src="scripts/directives/headerDirective.js"></script>
+        <script src="scripts/directives/footerDirective.js"></script>
+        <script src="scripts/directives/klantDirective.js"></script>
+        <script src="scripts/directives/kentekenDirective.js"></script>
+        <script src="scripts/directives/spinner.js"></script>
+        <script src="scripts/directives/opdrachtVoortgangDirective.js"></script>
+
+        <script src="scripts/services/header.js"></script>
+        <script src="scripts/services/auth.js"></script>
+
+
+        <script src="scripts/onderdelen/controllers/main.js"></script>
+        <script src="scripts/onderdelen/controllers/header_ctrl.js"></script>
+        <script src="scripts/onderdelen/controllers/footer_ctrl.js"></script>
+        <script src="scripts/onderdelen/controllers/onderdeelbewerken_ctrl.js"></script>
+        <script src="scripts/onderdelen/controllers/onderdeeldetails_ctrl.js"></script>
+
+        <script src="scripts/dashboard/dashboard_ctrl.js"></script>
+        
+        <script src="scripts/users/controllers/login_ctrl.js"></script>
+        <script src="scripts/users/controllers/user_ctrl.js"></script>
+        <script src="scripts/users/controllers/bewerk_user_ctrl.js"></script>
+        
+        <script src="scripts/orders/controllers/orders_ctrl.js"></script>
+        <script src="scripts/orders/controllers/nieuwe_order_ctrl.js"></script>
+        <script src="scripts/orders/controllers/bewerk_order_ctrl.js"></script>
+        
+        <script src="scripts/settings/controllers/settings_ctrl.js"></script>
+
+        
+        <!-- endbuild -->
+        
+        <script src="//cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/SVG-Morpheus/0.1.8/svg-morpheus.js"></script> 
+        <script src="http://bouil.github.io/angular-google-chart/ng-google-chart.js"></script>
+        
+        
+
+<!--jQuery 2.1.1 -->
+    <script src="assets/lib/jquery/jquery.min.js"></script>
+
+    <!--Bootstrap -->
+    <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- MetisMenu -->
+    <script src="assets/lib/metismenu/metisMenu.min.js"></script>
+
+    <!-- Screenfull -->
+    <script src="assets/lib/screenfull/screenfull.js"></script>
+
+    <!-- Metis core scripts -->
+    <script src="assets/js/core.min.js"></script>
+
+    <!-- Metis demo scripts -->
+    <script src="assets/js/app.min.js"></script>
+    <script src="assets/js/style-switcher.min.js"></script>
+
+   </body>
+</html>  
+    
+    

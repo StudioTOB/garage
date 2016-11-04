@@ -1,0 +1,34 @@
+<style>.rcorners2 {
+    border-radius: 12px;
+    border: 1px solid #8AC007;
+
+    margin-top: 3px;
+    overflow: auto;
+    padding-bottom:20px;
+    box-shadow: 2px 2px 2px #888;
+}
+.fadeit {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    opacity: 1;
+}
+.fadeit.ng-enter,
+.fadeit.ng-leave {
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.fadeit.ng-enter {
+    opacity: 0;
+}
+.fadeit.ng-enter-active {
+    opacity: 1;
+}
+.fadeit.ng-leave {
+    opacity: 1;
+}
+.fadeit.ng-leave-active {
+    opacity: 0;
+}</style> <div class="col-md-6 rcorners2 fadeit" style="margin-left:0px;height:100%; background-color: white" ng-if="dataloaded"> <div class="row" style="background-color:#8AC007;height:19px"></div> <form name="profielForm" ng-submit="createUser(profiel)"> Email: <input type="text" class="form-control" name="email" ng-model="profiel.email"> Password: <input type="text" class="form-control" name="password" ng-model="profiel.password"> Voornaam <input type="text" class="form-control" name="voornaam" ng-model="profiel.voornaam"> Achternaam <input type="text" class="form-control" name="achternaam" ng-model="profiel.achternaam"> Account Type <select class="form-control" name="accountType" ng-model="profiel.accountType"> <option value="admin">Admin <option value="monteur">Monteur <option value="admin">Klant </select> <md-button type="submit" class="md-raised md-primary">Gebruiker Aanmaken</md-button> </form> </div> <div class="alert alert-success" role="alert" ng-show="message">{{message}}</div> <div class="col-md-12" style="height:20px"></div> <div class="row"> <div class="col-md-12 rcorners2 fadeit" style="margin-left:10px;height:100%; background-color: white" ng-if="dataloaded"> <div class="row" style="background-color:#8AC007;height:19px"></div> <table class="table table-responsive table-striped" st-table="gebruikersCollection" st-safe-src="gebruikers"> <thead> <tr> <th colspan="1"> <input st-search="voornaam" placeholder="Zoek op voornaam" class="input-sm form-control" type="search">  <th colspan="1"> <input st-search="achternaam" placeholder="Zoek op achternaam" class="input-sm form-control" type="search">  <th colspan="1"> <input st-search placeholder="Algemeen zoeken" class="input-sm form-control" type="search">  <th> <select ng-model="itemsPerPage" ng-change="changed()" class="input-sm"> <option value="5">5 <option value="10">10 <option value="50">50 </select>   <th st-sort="voornaam">Voornaam <th st-sort="achternaam">Achternaam <th st-sort="email">Email <th st-sort="plaats">Plaats <th st-sort="regio">Regio <th>  <tbody> <tr ng-repeat="gebruiker in gebruikersCollection"> <td>{{gebruiker.voornaam}}  <td>{{gebruiker.achternaam}} <td>{{gebruiker.email}} <td>{{gebruiker.plaats}} <td>{{gebruiker.regio}} <td><a class="btn btn-primary btn-xs btn-line" href="#/gebruikers/{{gebruiker.$id}}">Bewerken</a><br> <button class="btn btn-danger btn-xs btn-line" ng-click="verwijderen(gebruiker,gebruiker.email,gebruiker.password)">Verwijderen</button>    <tfoot> <tr> <td colspan="10" class="text-center"> <div st-pagination="" st-items-by-page="itemsByPage"></div>    </table> <spinner></spinner> </div> </div>

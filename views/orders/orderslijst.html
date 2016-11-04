@@ -1,0 +1,119 @@
+<style>.zoek_kentekenplaat
+{
+    border:none;
+    border-color:#F0F0F0;
+    font-size: 18px;
+    font-weight: bold;
+    width: 125px;
+    height: 30px; /*background-color: #f4be04;*/
+    padding-left: 15px; /*border: 1px solid #ffcc00;*/
+    padding-bottom: 4px;
+    padding-top: 2px;
+    text-transform: uppercase;
+    margin-left: 10px;
+    margin-top: 2px;
+    background: url('https://ovi.rdw.nl/images/kenteken_125_2.jpg') no-repeat; /*margin-bottom: 21px;*/
+}
+select option[disabled]:first-child {
+  display: none;
+}
+.firstrow{
+ padding-top: 10px;
+}
+/*
+  We're using CSS transitions for when
+  the enter and move events are triggered
+  for the element that has the .repeated-item
+  class
+*/
+.repeated-item.ng-enter, .repeated-item.ng-move {
+  -webkit-transition:0.95s linear all;
+  -moz-transition:0.95s linear all;
+  -o-transition:0.95s linear all;
+  transition:0.95s linear all;
+  opacity:0;
+}
+.repeated-item.ng-enter-stagger, .repeated-item.ng-leave-stagger {
+ transition-delay: 0.1s;
+ transition-duration: 0s;
+}
+/*
+ The ng-enter-active and ng-move-active
+ are where the transition destination properties
+ are set so that the animation knows what to
+ animate.
+*/
+.repeated-item.ng-enter.ng-enter-active,
+.repeated-item.ng-move.ng-move-active {
+  opacity:1;
+}
+
+/*
+  We're using CSS keyframe animations for when
+  the leave event is triggered for the element
+  that has the .repeated-item class
+*/
+.repeated-item.ng-leave {
+  -webkit-animation:0.95s my_animation;
+  -moz-animation:0.95s my_animation;
+  -o-animation:0.95s my_animation;
+  animation:0.95s my_animation;
+}
+@keyframes my_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+/*
+  Unfortunately each browser vendor requires
+  its own definition of keyframe animation code...
+*/
+@-webkit-keyframes my_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-moz-keyframes my_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-o-keyframes my_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+.progress { 
+  height: 0.5em;
+  overflow: hidden;
+
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+
+    border-right-color: #CCC!important;
+  border-bottom-color: #CCC!important;
+  border-left-color: #CCC!important;
+  line-height: 1.5em; 
+}
+
+.progress-bar { 
+  transition: width 2s ease-in-out; 
+}
+
+hr {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #8AC007; /* old IE */
+    background-color: #8AC007; /* Modern Browsers */
+
+}
+.rcorners2 {
+    border-radius: 12px;
+    border: 1px solid #8AC007;
+    background-color: white;
+    margin-top: 3px;
+    overflow: auto;
+    padding-bottom:20px;
+    box-shadow: 2px 2px 2px #888;
+}</style> <div class="row firstrow rcorners2" style="padding-top:15px"> <div class="col-md-2"> <a class="btn btn-success btn-sm btn-line" href="#/orders/nieuw">Nieuwe Opdracht</a> </div> <div class="col-md-3"> <select ng-model="whatOrders" ng-change="changeOrderview()" class="list-selector form-control input-md form-control"> <option value disabled>Selecteer een optie <option value="1">Alle Orders <option value="2">Nieuwe Orders <option value="3">Afgehandelde Orders </select> </div> <div class="col-md-3"> <select ng-model="itemsPerPage" ng-change="changed()" class="input-md form-control"> <option value="" disabled selected>Aantal per Pagina <option value="5">5 <option value="10">10 <option value="50">50 </select> </div> </div> <div class="col-lg-12" style="height:10px"></div> <div class="row rcorners2"> <table class="table table-responsive table-striped" st-table="opdrachtenCollection" st-safe-src="opdrachten"> <thead> <th st-sort="status">Status <th st-sort="nummer">Opdrachtnummer <th>Voortgang <th st-sort="kenteken">Kenteken <th st-sort="klant">Datum/Klant <th st-sort="totaaluren">Totaal Uren <th st-sort="totaalbedrag">Factuur Bedrag  <tbody> <tr ng-repeat="opdracht in opdrachtenCollection | orderBy:'status':reverse" class="repeated-item" ng-click="selectedOrder(opdracht.$id)" style="cursor: pointer"> <td ng-if="opdracht.status === 'gereed' && !opdracht.loopt"> <i class="fa fa-check" style="color:green; font-size:24px" tooltip="Order {{opdracht.nummer}} is gereed." tooltip-placement="right"></i>  <td ng-if="opdracht.status !== 'gereed' && !opdracht.loopt"> <i class="fa fa-car" style="color:orange; font-size:24px" tooltip="Order {{opdracht.nummer}} is nog niet gestart." tooltip-placement="right"></i>  <td ng-if="opdracht.loopt"> <i class="fa fa-cog fa-spin" style="color:#FF5722; font-size:36px" tooltip="Order {{opdracht.nummer}} wordt aan gewerkt." tooltip-placement="right"></i>  <td> <span style="color:rgb(255, 87, 34);font-size:24px" ng-if="opdracht.loopt"><b>{{opdracht.nummer}}</b></span> <span ng-if="!opdracht.loopt">{{opdracht.nummer}}</span>  <td> <opdracht-voortgang opdrachtnummer="{{opdracht.nummer}}"></opdracht-voortgang>  <td><div class="zoek_kentekenplaat"><kenteken klantid="{{opdracht.klant}}" kentekenid="{{opdracht.kenteken}}"></kenteken></div> <td>{{opdracht.datum |date}} <br> <i><klantgegevens id="{{opdracht.klant}}"></klantgegevens></i>  <td> <span style="color:rgb(255, 87, 34);font-size:24px" ng-if="opdracht.loopt && opdracht.totaaluren"><b>{{opdracht.totaaluren | time}}</b></span> <span ng-if="!opdracht.loopt && opdracht.totaaluren">{{opdracht.totaaluren | time}}</span>  <td><span style="color:rgb(255, 87, 34);font-size:24px" ng-if="opdracht.loopt"><b>{{opdracht.totaalbedrag | currency}}</b></span> <span ng-if="!opdracht.loopt">{{opdracht.totaalbedrag | currency}}</span>  <td><a style="display:block;margin-bottom:10px" class="btn btn-primary btn-xs btn-line" ng-href="#/orders/bewerken/{{opdracht.$id}}">Bewerken</a> <a href="" style="display:block" class="btn btn-danger btn-xs btn-line" ng-click="verwijderen(opdracht)">Verwijderen</a>    <tfoot> <tr> <td colspan="10" class="text-center"> <div st-pagination="" st-items-by-page="itemsByPage"></div>    </table> <spinner></spinner> </div> 
